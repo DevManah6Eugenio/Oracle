@@ -19,4 +19,4 @@ select * from compras where recebido = '0';
 SELECT * FROM COMPRAS WHERE RECEBIDO = '1' OR VALOR > 5000;
 
 /*Selecionando todas as compras que o valor esteja entre 1.000,00 e 3.000,00 ou seja maior que 5.000,00.*/
-select * from compras where valor > '1000' and valor < '3000' or valor > '5000';
+select * from compras where valor between '1000' and '3000' or valor > '5000';
