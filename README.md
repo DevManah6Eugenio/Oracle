@@ -1,2 +1,2 @@
 # Oracle
-<h2>código SQL para banco de dados Oracle<h2>
+<h2>Script SQL para banco de dados Oracle<h2>
