@@ -17,7 +17,7 @@ select count(valor) from compras;
 select recebido, sum(valor) from compras group by recebido;
 
 /*media das compras feitas antes do dia 12 do 03 de 2009*/
-select avg(valor) as media from compras where data <  '12-03-2009';
+select avg(valor) as media from compras where data < '12-03-2009';
 
 /*Calcule a soma dos valores de todas as compras com 
 datas inferiores a 10/11/2010, agrupadas por forma de pagamento.*/
