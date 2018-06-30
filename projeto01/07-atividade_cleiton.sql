@@ -36,7 +36,7 @@ insert into pessoa (nome, idade, sexo, cpf, id_endereco, numero_conta) values ('
 insert into pessoa (nome, idade, sexo, cpf, id_endereco, numero_conta) values ('miqueias', '22', 'M', '24242424242', '5', '987');
 
 /* 1 - Quero todas as pessoas que residem em apartamentos.*/
-select nome from pessoa inner join endereco on (pessoa.id_endereco = endereco.id_endereco) where complemento = 'apar';
+select p.nome from pessoa p inner join endereco e on (p.id_endereco = e.id_endereco) where e.complemento = 'apar';
 
 /* 2 - Quero todas as pessoas que tenha saldo da conta MAIOR que R$100,00*/
 select nome from pessoa inner join conta on (pessoa.numero_conta = conta.numero) where saldo > '100';
