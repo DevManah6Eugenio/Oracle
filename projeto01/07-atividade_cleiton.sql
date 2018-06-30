@@ -36,19 +36,19 @@ insert into pessoa (nome, idade, sexo, cpf, id_endereco, numero_conta) values ('
 insert into pessoa (nome, idade, sexo, cpf, id_endereco, numero_conta) values ('miqueias', '22', 'M', '24242424242', '5', '987');
 
 /* 1 - Quero todas as pessoas que residem em apartamentos.*/
-select p.nome from pessoa p inner join endereco e on (p.id_endereco = e.id_endereco) where e.complemento = 'apar';
+select p.nome, p.idade, p.sexo, p.cpf from pessoa p inner join endereco e on (p.id_endereco = e.id_endereco) where e.complemento = 'apar';
 
 /* 2 - Quero todas as pessoas que tenha saldo da conta MAIOR que R$100,00*/
-select nome from pessoa inner join conta on (pessoa.numero_conta = conta.numero) where saldo > '100';
+select p.nome, p.idade, p.sexo, p.cpf from pessoa p inner join conta c on (p.numero_conta = c.numero) where c.saldo > '100';
 
 /* 3 - Quero os endereços das pessoas que não tem saldo em conta e residem em casa.*/
-select endereco.numero, rua, complemento from pessoa 
-    inner join endereco on 
-    (pessoa.id_endereco = endereco.id_endereco) 
-    inner join conta on 
-    (pessoa.numero_conta = conta.numero)
-    where (saldo is null or saldo = '0')
-    and complemento = 'casa';
+select (informações de endereço) from pessoa p
+    inner join endereco e on 
+    (p.id_endereco = e.id_endereco) 
+    inner join conta c on 
+    (p.numero_conta = c.numero)
+    where (c.saldo is null or c.saldo = '0')
+    and e.complemento = 'casa';
     
     
 /*criar um programa que retorna todas as informações dos tres ultimos selects*/
