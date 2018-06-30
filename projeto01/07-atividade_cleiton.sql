@@ -49,3 +49,6 @@ select endereco.numero, rua, complemento from pessoa
     (pessoa.numero_conta = conta.numero)
     where (saldo is null or saldo = '0')
     and complemento = 'casa';
+    
+    
+/*criar um programa que retorna todas as informações dos tres ultimos selects*/
