@@ -49,6 +49,6 @@ select (informações de endereço) from pessoa p
     (p.numero_conta = c.numero)
     where (c.saldo is null or c.saldo = '0')
     and e.complemento = 'casa';
-    
+        
     
 /*criar um programa que retorna todas as informações dos tres ultimos selects*/
