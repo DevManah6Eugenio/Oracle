@@ -54,8 +54,16 @@ select a.nome, c.nome, avg(n.nota) as media from aluno a
     join exercicio e on(e.id = r.exercicio_id)
     join secao s on (s.id = e.secao_id)
     join curso c on (c.id = s.curso_id) 
-    join nota n on (n.id)
+    join nota n on (n.id);
 
-
-
-
+-------------------------------------------------------------------------------------------------------------
+/*Devolva todos os alunos, cursos e a média de suas notas.
+Lembre-se de agrupar por aluno e por curso. Filtre também pela nota*/
+select a.nome, c.nome, avg(n.nota) as media from nota n
+    join resposta r on r.id = n.resposta_id
+    join exercicio e on e.id = r.exercicio_id
+    join secao s on s.id = e.secao_id
+    join curso c on c.id = s.curso_id
+    join aluno a on a.id = r.aluno_id
+group by a.nome, c.nome
+having avg(n.nota) < 5;
