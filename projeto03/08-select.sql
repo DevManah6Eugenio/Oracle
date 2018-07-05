@@ -59,11 +59,41 @@ select a.nome, c.nome, avg(n.nota) as media from aluno a
 -------------------------------------------------------------------------------------------------------------
 /*Devolva todos os alunos, cursos e a média de suas notas.
 Lembre-se de agrupar por aluno e por curso. Filtre também pela nota*/
-select a.nome, c.nome, avg(n.nota) as media from nota n
-    join resposta r on r.id = n.resposta_id
-    join exercicio e on e.id = r.exercicio_id
-    join secao s on s.id = e.secao_id
-    join curso c on c.id = s.curso_id
-    join aluno a on a.id = r.aluno_id
-group by a.nome, c.nome
-having avg(n.nota) < 5;
+select a.id as aluno_id, c.id as curso_id, a.nome, a.email, c.nome as curso, avg(n.nota) as media 
+    from nota n
+    join resposta r on (r.id = n.resposta_id)
+    join exercicio e on (e.id = r.exercicio_id)
+    join secao s on (s.id = e.secao_id)
+    join curso c on (c.id = s.curso_id)
+    join aluno a on (a.id = r.aluno_id)
+    group by a.nome, c.nome
+    having avg(n.nota) < 5;
+    
+-------------------------------------------------------------------------------------------------------------
+/*Exiba todos os cursos e a sua quantidade de matrículas. 
+Mas exiba somente cursos que tenham mais de 1 matrícula.*/
+select c.nome as curso, count(m.id) as qtd_matriculados from curso c
+    inner join matricula m on (m.curso_id = c.id)
+    group by c.nome
+    having count(m.curso_id) > 1;
+
+-------------------------------------------------------------------------------------------------------------
+/*Exiba o nome do curso e a quantidade de seções que existe nele. 
+Mostre só cursos com mais de 3 seções.*/
+select c.nome as curso, count(s.id) as qtd_secao from curso c 
+    join secao s on (s.curso_id = c.id)
+    group by c.nome
+    having count(s.id) > 3;
+
+-------------------------------------------------------------------------------------------------------------
+/*Exiba todos os tipos de matrícula que existem na tabela.*/
+select distinct(tipo) from matricula;
+
+
+-------------------------------------------------------------------------------------------------------------
+/*Exiba todos os cursos e a sua quantidade de matrículas.
+Mas filtre por matrículas dos tipos PF ou PJ.*/
+
+
+
+
