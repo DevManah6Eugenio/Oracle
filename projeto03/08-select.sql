@@ -89,11 +89,12 @@ select c.nome as curso, count(s.id) as qtd_secao from curso c
 /*Exiba todos os tipos de matrícula que existem na tabela.*/
 select distinct(tipo) from matricula;
 
-
 -------------------------------------------------------------------------------------------------------------
 /*Exiba todos os cursos e a sua quantidade de matrículas.
 Mas filtre por matrículas dos tipos PF ou PJ.*/
-
-
-
+select c.nome as curso, count(m.id) as quantidade from curso c 
+    join matricula m on c.id = m.curso_id
+    where m.tipo in ('PAGA_PF', 'PAGA_PJ')
+    group by c.nome;
+    
 
