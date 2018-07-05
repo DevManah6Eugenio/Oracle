@@ -97,4 +97,11 @@ select c.nome as curso, count(m.id) as quantidade from curso c
     where m.tipo in ('PAGA_PF', 'PAGA_PJ')
     group by c.nome;
     
-
+/*Traga todas os exercícios e a quantidade de respostas de cada uma.
+Mas dessa vez, somente dos cursos com ID 1 e 3.*/
+select e.pergunta, count(r.id) as quantidade from exercicio e 
+    join resposta r on e.id = r.exercicio_id
+    join secao s on s.id = e.secao_id
+    join curso c on s.curso_id = c.id
+    where c.id in (1,3)
+    group by e.pergunta;
