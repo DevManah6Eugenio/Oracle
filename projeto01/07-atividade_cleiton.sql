@@ -48,7 +48,56 @@ select (informações de endereço) from pessoa p
     inner join conta c on 
     (p.numero_conta = c.numero)
     where (c.saldo is null or c.saldo = '0')
-    and e.complemento = 'casa';
-        
+    and e.complemento = 'casa';        
     
-/*criar um programa que retorna todas as informações dos tres ultimos selects*/
+/*visao com as informações de pessoa e endereço*/
+create view view_pessoa_endereco as
+  select
+    --pessoa
+    p.nome,
+    p.idade,
+    p.sexo,
+    p.cpf,
+    --endereço
+    e.rua,
+    e.numero,
+    e.complemento
+  from pessoa p 
+    inner join endereco e on 
+    (e.id_endereco = p.id_endereco);
+
+/*visão com as informações de pessoa e conta*/
+create view view_pessoa_conta as
+  select 
+    --pessoa
+    p.nome,
+    p.idade,
+    p.sexo,
+    p.cpf,
+    --conta
+    c.saldo,
+    c.limite
+  from pessoa p 
+    inner join conta c on 
+    (p.numero_conta = c.numero);
+
+/*visão com as informações de pessoa, endereço e conta*/
+create view view_pessoa_endereco_conta as
+  select
+    --pessoa
+    p.nome,
+    p.idade,
+    p.sexo,
+    p.cpf,
+    --conta
+    c.saldo,
+    c.limite,
+    --endereço
+    e.rua,
+    e.numero,
+    e.complemento    
+  from pessoa p
+    inner join endereco e on 
+    (p.id_endereco = e.id_endereco) 
+    inner join conta c on 
+    (p.numero_conta = c.numero);
