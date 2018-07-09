@@ -139,4 +139,16 @@ select a.nome, c.nome, avg(n.nota) as media, avg(n.nota) - (select avg(n.nota) f
     join curso c on c.id = s.curso_id
     join aluno a on a.id = r.aluno_id
     where a.id in (select aluno_id from matricula where data > (select sysdate - interval '6' month from dual))
-group by c.nome, a.nome;
+    group by c.nome, a.nome;
+
+-------------------------------------------------------------------------------------------------------------
+/*Exiba todos os alunos e suas possíveis respostas. 
+Exiba todos os alunos, mesmo que eles não tenham respondido nenhuma pergunta.*/
+select a.nome, r.resposta_dada from aluno a 
+    left join resposta r on a.id = r.aluno_id;
+    
+-------------------------------------------------------------------------------------------------------------
+/*Exiba agora todos os alunos e suas possíveis respostas para o exercício com ID = 1.*/
+/*Exiba todos os alunos, até os que não responderam o exercício.*/
+select a.nome, r.resposta_dada from aluno a 
+    left join resposta r on a.id = r.aluno_id and r.exercicio_id = 1;
