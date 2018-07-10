@@ -152,3 +152,22 @@ select a.nome, r.resposta_dada from aluno a
 /*Exiba todos os alunos, até os que não responderam o exercício.*/
 select a.nome, r.resposta_dada from aluno a 
     left join resposta r on a.id = r.aluno_id and r.exercicio_id = 1;
+
+-------------------------------------------------------------------------------------------------------------
+/*Escreva uma query que ordene os alunos por nome e traga apenas os dois primeiros.*/
+select rownum, nome from 
+    (select a.nome from aluno a group by a.nome) 
+    where rownum <= 2;
+
+-------------------------------------------------------------------------------------------------------------
+/*Escreva uma SQL que devolva os 3 primeiros alunos que o e-mail termine com o domínio ".com".*/
+select rownum, nome, email from 
+    (select a.nome, a.email from aluno a) 
+    where rownum <= 3 and email like '%.com';
+    
+-------------------------------------------------------------------------------------------------------------
+/*Escreva uma query que ordene os alunos por nome, e traga apenas os dois primeiros cujo e-mail termine com ".com".*/
+select rownum, nome, email from 
+    (select a.nome, a.email from aluno a order by a.nome) 
+    where rownum <= 2 and email like '%.com';
+    
