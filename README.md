@@ -9,3 +9,6 @@
 Properties<br>
 Conection con = DriverManager.getConnection(url, jdbcProperties);
 </p>
+
+
+prepSt.setArray(1, this.getCon().createArrayOf("integer", org.apache.commons.lang3.StringUtils.split(objeto.getIdsDomCidadeEDIExcluidos(), ",")));
