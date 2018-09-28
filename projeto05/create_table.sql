@@ -1,21 +1,24 @@
---criar usuario
+--Criar Usuario(usuario e senha)
 CREATE USER fuctura IDENTIFIED BY fuctura;
 
---privilegios para o usuario
+--Privilegios Usuario
 GRANT DBA TO fuctura;
 
+--Perfil
 create table perfil(
 	codigo number not null,
 	descricao varchar2(50),
 	constraint perfil_pk primary key (codigo) enable
 );
 
+--Curso
 create table curso (
 	codigo number not null,
 	descricao varchar2(50),
 	constraint curso_pk primary key (codigo) enable
 );
 
+--Usuario
 create table usuario(
 	cpf varchar2(11) not null,
 	codigo_perfil number not null,
@@ -31,6 +34,7 @@ create table usuario(
 	constraint curso_fk foreign key (codigo_curso) references curso(codigo) enable
 );
 
+--Pergunta
 create table pergunta(
 	id_pergunta number not null,
 	descricao varchar2(1000),
@@ -41,8 +45,10 @@ create table pergunta(
 	constraint usuario_fk foreign key (cpf_usuario) references usuario(cpf) enable
 );
 
+--Sequence de Pergunta
 create sequence s_id_pergunta increment by 1 start with 1 minvalue 1;
 
+--Votação
 create table votacao(
 	id_votacao number not null,
 	id_pergunta number not null,
@@ -52,8 +58,10 @@ create table votacao(
 	constraint pergunta_fk foreign key (id_pergunta) references pergunta(id_pergunta) enable
 );
 
+--Sequence de Votação
 create sequence s_id_votacao increment by 1 start with 1 minvalue 1;
 
+--Resposta
 create table resposta(
 	id_resposta number not null,
 	id_pergunta number not null,
@@ -65,8 +73,10 @@ create table resposta(
 	constraint resposta_usuario_fk foreign key (cpf_usuario) references usuario(cpf) enable
 );
 
+--Sequence de Resposta
 create sequence s_id_resposta increment by 1 start with 1 minvalue 1;
 
+--Votação Usuario
 create table votacao_usuario (
 	id_votacao number not null,
 	cpf_usuario varchar2(11) not null,
